@@ -78,13 +78,13 @@
             <div data-role="fievcxldcontain">
               <fieldset data-role="controlgroup">
                 <legend>Mascota favorita:</legend>
-                    <input type="radio" name="pregunta2" id="pregunta2" value="gato" checked="checked">
+                    <input type="radio" name="pregunta2" id="pregunta2" value="choice-1" checked="checked">
                     <label for="pregunta2">Gato</label>
-                    <input type="radio" name="pregunta2" id="radio-choice-2" value="perro">
+                    <input type="radio" name="pregunta2" id="radio-choice-2" value="choice-2">
                     <label for="radio-choice-2">Perro</label>
-                    <input type="radio" name="pregunta2" id="radio-choice-3" value="Hamster">
+                    <input type="radio" name="pregunta2" id="radio-choice-3" value="choice-3">
                     <label for="radio-choice-3">Hamster</label>
-                    <input type="radio" name="pregunta2" id="radio-choice-4" value="conejo">
+                    <input type="radio" name="pregunta2" id="radio-choice-4" value="choice-4">
                     <label for="radio-choice-4">Conejo</label>
             </fieldset>
             </div>
