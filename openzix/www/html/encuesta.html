@@ -32,30 +32,117 @@
     <title>Encuesta</title>
 </head>
 <body>
-    <div data-role="page">
+    <form id='encuestaForm'>
+      <div data-role="page" id="indexForm">
 
-        <div data-role="header" data-position="fixed">
-            <img src="../img/icon.png" class="ui-btn-right" />
-            <h1>Encuesta</h1>
-            <a href="../index.html">Home</a>
-        </div><!-- /header -->
+          <div data-role="header" data-position="fixed">
+              <img src="../img/icon.png" class="ui-btn-right" />
+              <h1>Encuesta</h1>
+              <a href="../index.html">Home</a>
+          </div><!-- /header -->
 
-        <div role="main" class="ui-content">
-            <ul id="two" data-role="listview" data-dividertheme="a">
-              
-            </ul>
+          <div role="main" class="ui-content">
+              <ul id="two" data-role="listview" data-dividertheme="a">
+                  <li><a href="#pregunta1">Realizar encuesta</a></li>
+              </ul>
+          </div><!-- /content -->
+
+          <div data-role="footer" data-position="fixed">
+              <h4>Openzix 2014</h4>
+          </div><!-- /footer -->
+
+      </div>
+    <div data-role="page" id='pregunta1'>
+          <div data-role="header" data-position='fixed'>
+            <h1>Pregunta 1</h1>
+            <a href="#indexForm">Comenzar</a>
+            <a href="#pregunta2">Siguiente</a>
+          </div><!-- /header -->
+
+          <div data-role="content"> 
+            <div data-role="fievcxldcontain">
+              <label for="slider-6">Edad:</label>
+              <input type="range" name="pregunta1" id="slider-6" value="25" min="15" max="90" data-highlight="true" data-mini="true">
+            </div>
         </div><!-- /content -->
+    </div>
 
-        <div data-role="footer" data-position="fixed">
-            <h4>Openzix 2014</h4>
-        </div><!-- /footer -->
+      <div data-role="page" id='pregunta2'>
+          <div data-role="header" data-position='fixed'>
+            <h1>Pregunta 2</h1>
+            <a href="#indexForm">Comenzar</a>
+            <a href="#pregunta3">Siguiente</a>
+          </div><!-- /header -->
 
+          <div data-role="content"> 
+            <div data-role="fievcxldcontain">
+              <fieldset data-role="controlgroup">
+                <legend>Mascota favorita:</legend>
+                    <input type="radio" name="pregunta2" id="pregunta2" value="choice-1" checked="checked">
+                    <label for="pregunta2">Gato</label>
+                    <input type="radio" name="pregunta2" id="radio-choice-2" value="choice-2">
+                    <label for="radio-choice-2">Perro</label>
+                    <input type="radio" name="pregunta2" id="radio-choice-3" value="choice-3">
+                    <label for="radio-choice-3">Hamster</label>
+                    <input type="radio" name="pregunta2" id="radio-choice-4" value="choice-4">
+                    <label for="radio-choice-4">Conejo</label>
+            </fieldset>
+            </div>
+        </div><!-- /content -->
+    </div>
+    <div data-role="page" id='pregunta3'>
+          <div data-role="header" data-position='fixed'>
+            <h1>Pregunta 3</h1>
+            <a href="#indexForm">Comenzar</a>
+          </div><!-- /header -->
 
+          <div data-role="content"> 
+            <div data-role="fievcxldcontain">
+              <fieldset data-role="controlgroup">
+                  <legend>¿Qué marca de alimento ha comprado para su mascota?:</legend>
+                  <input type="checkbox" name="pregunta3[]" id="checkbox-1a">
+                  <label for="checkbox-1a">Purita</label>
+                  <input type="checkbox" name="pregunta3[]" id="checkbox-2a">
+                  <label for="checkbox-2a">Catchow</label>
+                  <input type="checkbox" name="pregunta3[]" id="checkbox-3a">
+                  <label for="checkbox-3a">Dogchow</label>
+                  <input type="checkbox" name="pregunta3[]" id="checkbox-4a">
+                  <label for="checkbox-4a">Wiskas</label>
+              </fieldset>
+            </div>
+            <hr>
+
+            <button type="submit" data-theme="a" name="submit" value="submit-value" class="ui-btn-hidden" aria-disabled="false">Enviar</button>
+        </div><!-- /content -->
+      </div>
+    
+    </form>
 
         <!--script type="text/javascript" src="../cordova.js"></script-->
         <script type="text/javascript" src="../js/index.js"></script>
         <script type="text/javascript">
             //app.initialize();
+        </script>
+        <script>
+
+        $("#encuestaForm").submit(function(event) {
+            event.preventDefault();
+            var data = $("#encuestaForm").serialize();
+            //console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "http://app.openzix.com/polls/",
+                data: data,
+                success: function(datos) {
+                    alert('Datos Enviador !Exito¡');
+                },
+                error: function(error, quepaso, obje) {
+
+                }
+            });
+        });
+
+
         </script>
 </body>
 </html>
