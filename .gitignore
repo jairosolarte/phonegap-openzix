@@ -30,3 +30,9 @@ proguard/
 
 #Netbean
 nbproject/
+
+openzix/config.xml
+openzix/hooks/
+openzix/platforms
+openzix/plugins
+
