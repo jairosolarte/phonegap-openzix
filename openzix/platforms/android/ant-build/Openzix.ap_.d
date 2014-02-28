@@ -16,6 +16,7 @@ C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\_where-is-www.txt 
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\cordova.js \
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\cordova_plugins.js \
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\css \
+C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\html \
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\img \
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\index.html \
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\js \
@@ -225,6 +226,10 @@ C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\css\images\ico
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\css\images\icons-svg\user-white.svg \
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\css\images\icons-svg\video-black.svg \
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\css\images\icons-svg\video-white.svg \
+C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\html\gpsymapa.html \
+C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\img\camara.png \
+C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\img\gps.png \
+C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\img\icon.png \
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\img\logo.png \
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\js\index.js \
 C:\wamp\www\phonegap-openzix\openzix\platforms\android\assets\www\js\jquery-2.1.0.min.js \

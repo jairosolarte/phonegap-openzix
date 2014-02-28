@@ -1,0 +1,134 @@
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            /*#map-page, #map-canvas { width: 100%; height: 100%; padding: 0; }*/
+            #content {
+                padding: 0 !important;
+            }
+        </style>
+        <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.1.min.css" />
+        <script type="text/javascript"  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3gh3elNLR1bY0rVlcSEKLWjT93aEB3vw&sensor=true"></script>
+    </head>
+    <!--    <body onload="initialize()">
+            <div data-role="page" id="map-page">
+    
+                <div data-role="header" datafff-position="fixed">
+                    <img src="img/icon.png" class="ui-btn-left" />
+                    <h1>GPS y Mapa</h1>
+                    <img src="img/gps.png" class="ui-btn-right" />
+                </div> /header 
+    
+                <div role="main" style="height:520px; border: solid #059"  class="ui-content" id="map-canvas">
+                     map loads here... 
+                </div> /content 
+    
+                <div data-role="footer" data-position="fixed">
+                    <h4>Openzix 2014</h4>
+                </div> /footer 
+    
+    
+    
+                script type="text/javascript" src="cordova.js"></script
+                script type="text/javascript" src="js/index.js"></script
+                <script type="text/javascript">
+            function initialize() {
+                var mapOptions = {
+                    center: new google.maps.LatLng(4.598055599999999, -74.0758333),
+                    zoom: 8,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                google.maps.event.trigger(map, 'resize');
+                var map = new google.maps.Map(document.getElementById("map-canvas"),
+                        mapOptions);
+                        
+                google.maps.event.trigger(map, 'resize');
+            }
+                </script>
+        </body>-->
+
+    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.mobile-1.4.1.min.js"></script>
+    <body>
+        <div data-role="page" id="index">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    First Page
+                </h3>
+            </div>
+
+            <div data-role="content" id="content">
+                <div id="map_canvas" style="height:100%"></div>
+            </div>
+
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <h3>
+                    First Page
+                </h3>
+            </div>
+        </div>
+    </body>   
+    <script>
+        $(document).on('pageshow', '#index', function(e, data) {
+            $('#content').height(getRealContentHeight());
+            // This is the minimum zoom level that we'll allow
+            var minZoomLevel = 12;
+
+            var map = new google.maps.Map(document.getElementById('map_canvas'), {
+                zoom: minZoomLevel,
+                center: new google.maps.LatLng(38.50, -90.50),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            /* // Bounds for North America
+             var strictBounds = new google.maps.LatLngBounds(
+             new google.maps.LatLng(28.70, -127.50), 
+             new google.maps.LatLng(48.85, -55.90)
+             );
+             
+             // Listen for the dragend event
+             google.maps.event.addListener(map, 'dragend', function() {
+             if (strictBounds.contains(map.getCenter())) return;
+             
+             // We're out of bounds - Move the map back within the bounds
+             
+             var c = map.getCenter(),
+             x = c.lng(),
+             y = c.lat(),
+             maxX = strictBounds.getNorthEast().lng(),
+             maxY = strictBounds.getNorthEast().lat(),
+             minX = strictBounds.getSouthWest().lng(),
+             minY = strictBounds.getSouthWest().lat();
+             
+             if (x < minX) x = minX;
+             if (x > maxX) x = maxX;
+             if (y < minY) y = minY;
+             if (y > maxY) y = maxY;
+             
+             map.setCenter(new google.maps.LatLng(y, x));
+             });
+             
+             // Limit the zoom level
+             google.maps.event.addListener(map, 'zoom_changed', function() {
+             if (map.getZoom() < minZoomLevel) map.setZoom(minZoomLevel);
+             });  */
+
+        });
+
+        function getRealContentHeight() {
+            var header = $.mobile.activePage.find("div[data-role='header']:visible");
+            var footer = $.mobile.activePage.find("div[data-role='footer']:visible");
+            var content = $.mobile.activePage.find("div[data-role='content']:visible:visible");
+            var viewport_height = $(window).height();
+
+            var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
+            if ((content.outerHeight() - header.outerHeight() - footer.outerHeight()) <= viewport_height) {
+                content_height -= (content.outerHeight() - content.height());
+            }
+            return content_height;
+        }
+    </script> 
+
+
+</html>
