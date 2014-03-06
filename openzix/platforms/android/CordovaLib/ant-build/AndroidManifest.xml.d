@@ -1,7 +1,2 @@
-<<<<<<< HEAD
-/home/andes7/Documentos/public_html/phonegap-openzix/openzix/platforms/android/CordovaLib/ant-build/AndroidManifest.xml : \
-/home/andes7/Documentos/public_html/phonegap-openzix/openzix/platforms/android/CordovaLib/AndroidManifest.xml \
-=======
-/var/www/html/phonegap-openzix/openzix/platforms/android/CordovaLib/ant-build/AndroidManifest.xml : \
-/var/www/html/phonegap-openzix/openzix/platforms/android/CordovaLib/AndroidManifest.xml \
->>>>>>> 9db40ce68afba4ddc859df64ba74d0fb0dadbaef
+C:\wamp\www\phonegap-openzix\openzix\platforms\android\CordovaLib\ant-build\AndroidManifest.xml : \
+C:\wamp\www\phonegap-openzix\openzix\platforms\android\CordovaLib\AndroidManifest.xml \

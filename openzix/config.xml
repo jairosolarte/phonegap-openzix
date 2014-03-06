@@ -8,5 +8,7 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
+    <preference name="SplashScreen" value="icon" />
+    <preference name="SplashScreenDelay" value="5000" />
     <access origin="*" />
 </widget>
