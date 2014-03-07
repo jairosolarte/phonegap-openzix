@@ -1,0 +1,49 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div id="gpsymapa" data-role="page">
+
+            <div data-role="header" data-position="fixed">
+                <img src="../img/icon.png" class="ui-btn-right" />
+                <h1>Camara</h1>
+                <a data-rel="back">Home</a>
+            </div><!-- /header -->
+
+            <div role="main" class="ui-content">
+
+
+                <div id="img_canvas" class="col-md-12 estilo0" style="height:360px;"></div>
+
+            </div><!-- /content -->
+
+            <div data-role="footer" data-position="fixed">
+                <h4>Openzix 2014</h4>
+            </div><!-- /footer -->
+        </div>
+        <script>
+
+            navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+                destinationType: Camera.DestinationType.DATA_URL
+            });
+
+            function onSuccess(imageData) {
+                var image = document.getElementById('myImage');
+                image.src = "data:image/jpeg;base64," + imageData;
+                $('#img_canvas').html(image.src); 
+            }
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+            }
+
+        </script>
+    </body>
+</html>

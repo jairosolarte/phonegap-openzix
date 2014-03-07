@@ -29,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.1.min.css" />   
     <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.1.min.js"></script>
-    <script type="text/javascript"  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3gh3elNLR1bY0rVlcSEKLWjT93aEB3vw&sensor=true"></script>
+    
     <title>Openzix Apps</title>
 </head>
 <body>
@@ -42,13 +42,13 @@
 
         <div role="main" class="ui-content">
             <ul id="two" data-role="listview" data-dividertheme="a">
-                <li><a href="html/gpsymapa.html" data-ajax=”true”>
+                <li><a href="html/gpsymapa.html" rel="external" data-ajax=”false”>
                         <img src="img/gps.png" class="ui-li-icon"/>
                         GPS y Mapa
                     </a>
                 </li>
                 <li>
-                    <a href="#"><img src="img/camara.png" class="ui-li-icon"/>Camara</a>
+                    <a href="html/camara.html"><img src="img/camara.png" class="ui-li-icon"/>Camara</a>
                 </li>
                 <li>
                     <a href="html/encuesta.html" data-ajax="false" >
@@ -64,47 +64,9 @@
     </div>
 
 
-    <div id="gpsymapa" data-role="page">
-
-        <div data-role="header" data-position="fixed">
-            <img src="img/icon.png" class="ui-btn-right" />
-            <h1>Mapa App</h1>
-            <a href="#home">Home</a>
-        </div><!-- /header -->
-
-        <div role="main" class="ui-content">
-            <div class="row">
-                <button id="mostrarMapa">Mostrar Mapa</button>
-                <div id="map_canvas" class="col-md-12 estilo0" style=" height:480px;"></div>
-            </div>
-        </div><!-- /content -->
-
-        <div data-role="footer" data-position="fixed">
-            <h4>Openzix 2014</h4>
-        </div><!-- /footer -->
-    </div>
-
     <!--script type="text/javascript" src="cordova.js"></script-->
     <script type="text/javascript" src="js/index.js"></script>
 
-    <script type="text/javascript">
-        function initialize() {
-            var mapOptions = {
-                center: new google.maps.LatLng(4.598055599999999, -74.0758333),
-                zoom: 8,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var map = new google.maps.Map(document.getElementById("map_canvas"),
-                    mapOptions);
-            google.maps.event.trigger(map, 'resize');
-            $('#mostrarMapa').hide(); 
-        }
-        
-        $('#mostrarMapa').click(function(){
-            initialize(); 
-        }); 
-         
-    </script>
     
 </body>
 </html>

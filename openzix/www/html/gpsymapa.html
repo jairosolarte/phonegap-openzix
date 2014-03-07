@@ -3,22 +3,22 @@
     <head>
         <title>jQM Complex Demo</title>
         <!script type="text/javascript"  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3gh3elNLR1bY0rVlcSEKLWjT93aEB3vw&sensor=true"></script>
-
+<link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.1.min.css" /> 
+<script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery.mobile-1.4.1.min.js"></script>
+<script type="text/javascript"  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3gh3elNLR1bY0rVlcSEKLWjT93aEB3vw&sensor=true"></script>
 </head>
 <body>
     <div id="gpsymapa" data-role="page">
 
         <div data-role="header" data-position="fixed">
-            <img src="img/icon.png" class="ui-btn-right" />
-            <h1>Mapa Appff</h1>
-            <a href="#home">Home</a>
+            <img src="../img/icon.png" class="ui-btn-right" />
+            <h1>Mapa App</h1>
+            <a data-rel="back">Home</a>
         </div><!-- /header -->
 
         <div role="main" class="ui-content">
-            <div class="row">
-                <button id="mostrarMapa">Mostrar Mapa</button>
-                <div id="map_canvas" class="col-md-12 estilo0" style="height:480px;"></div>
-            </div>
+            <div id="map_canvas" class="col-md-12 estilo0" style="height:460px;"></div>
         </div><!-- /content -->
 
         <div data-role="footer" data-position="fixed">
@@ -26,11 +26,58 @@
         </div><!-- /footer -->
     </div>
     <script>
+        function initialize(position) {
 
-        $('#mostrarMapa').click(function() {
-            alert('sadsadsa');
-            //initialize(); 
-        });
+
+            var mapOptions = {
+                center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                zoom: 14,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"),
+                    mapOptions);
+            google.maps.event.trigger(map, 'resize');
+            $('#mostrarMapa').hide();
+
+            //creamos nuestro marcador
+            var marcador = new google.maps.Marker({
+                position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                map: map,
+                title: 'Marcador situado sobre Zamora',
+                animation: 'DROP',
+                icon: '../img/avion.png'
+            });
+
+            //ahora creamos nuestra ventana de información
+            var ventana = new google.maps.InfoWindow({
+                content: 'Latitude: ' + position.coords.latitude + '\n' +
+                        'Longitude: ' + position.coords.longitude + '\n' +
+                        'Altitude: ' + position.coords.altitude + '\n' +
+                        'Accuracy: ' + position.coords.accuracy + '\n' +
+                        'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+                        'Heading: ' + position.coords.heading + '\n' +
+                        'Speed: ' + position.coords.speed + '\n' +
+                        'Timestamp: ' + position.timestamp + '\n'
+            });
+            google.maps.event.addListener(marcador, 'click', function() {
+                ventana.open(map, marcador);
+            });
+        }
+
+
+        var onSuccess = function(position) {
+            initialize(position);
+        };
+
+// onError Callback receives a PositionError object
+//
+        function onError(error) {
+            alert('code: ' + error.code + '\n' +
+                    'message: Localizacion ' + error.message + '\n');
+            $('#map_canvas').text('message: Localizacion ' + error.message + '\n');
+        }
+
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
     </script>
 </body>
 </html>   
