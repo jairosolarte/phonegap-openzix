@@ -111,7 +111,7 @@
             </div>
             <hr>
 
-            <button type="submit" data-theme="a" name="submit" value="submit-value" class="ui-btn-hidden" aria-disabled="false">Enviar</button>
+            <button id="enviarFormulario" type="submit" data-theme="a" name="submit" value="submit-value" class="ui-btn-hidden" aria-disabled="false">Enviar</button>
         </div><!-- /content -->
       </div>
     
@@ -126,6 +126,10 @@
 
         $("#encuestaForm").submit(function(event) {
             event.preventDefault();
+        }); 
+        
+        $('#enviarFormulario').click(function(){
+
             var data = $("#encuestaForm").serialize();
             //console.log(data);
             $.ajax({
@@ -140,7 +144,6 @@
                 }
             });
         });
-
 
         </script>
 </body>

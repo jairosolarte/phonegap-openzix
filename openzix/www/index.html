@@ -29,7 +29,6 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.1.min.css" />   
     <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.1.min.js"></script>
-    
     <title>Openzix Apps</title>
 </head>
 <body>
@@ -48,10 +47,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="html/camara.html"><img src="img/camara.png" class="ui-li-icon"/>Camara</a>
+                    <a rel="external" data-ajax=”false” href="html/camara.html">
+                        <img src="img/camara.png" class="ui-li-icon"/>Camara
+                    </a>
                 </li>
                 <li>
-                    <a href="html/encuesta.html" data-ajax="false" >
+                    <a href="html/encuesta.html" >
                         <img src="img/encuesta.png" class="ui-li-icon"/>Encuesta
                     </a>
                 </li>
@@ -66,7 +67,7 @@
 
     <!--script type="text/javascript" src="cordova.js"></script-->
     <script type="text/javascript" src="js/index.js"></script>
-
+    <script> spps.initialize(); </script>
     
 </body>
 </html>

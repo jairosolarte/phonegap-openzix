@@ -7,43 +7,51 @@ and open the template in the editor.
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.1.min.css" />
+        <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.mobile-1.4.1.min.js"></script>
     </head>
     <body>
-        <div id="gpsymapa" data-role="page">
-
+        <div id="camara" data-role="page">
             <div data-role="header" data-position="fixed">
                 <img src="../img/icon.png" class="ui-btn-right" />
                 <h1>Camara</h1>
                 <a data-rel="back">Home</a>
             </div><!-- /header -->
-
             <div role="main" class="ui-content">
-
-
-                <div id="img_canvas" class="col-md-12 estilo0" style="height:360px;"></div>
-
+                
+                <button id="tomarFoto">Capture Photo</button> <br>
+                <img id="myImage">
+                <!--button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+                <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+                <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+                <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+                <img style="display:none;" id="largeImage" src="" /-->
             </div><!-- /content -->
 
             <div data-role="footer" data-position="fixed">
                 <h4>Openzix 2014</h4>
             </div><!-- /footer -->
         </div>
+        <script type="text/javascript" src="../js/index.js"></script>
         <script>
-
+            alert('uno');
             navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
                 destinationType: Camera.DestinationType.DATA_URL
             });
-
+            alert('dos'); 
             function onSuccess(imageData) {
+                alert('aqui');
                 var image = document.getElementById('myImage');
                 image.src = "data:image/jpeg;base64," + imageData;
-                $('#img_canvas').html(image.src); 
             }
 
             function onFail(message) {
                 alert('Failed because: ' + message);
             }
-
+            spps.camara();
         </script>
     </body>
 </html>
+
+
