@@ -3,7 +3,163 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+    <head>
+        <title>Ejemplo de Camera</title>
+
+        <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.1.min.css" /> 
+        <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.mobile-1.4.1.min.js"></script>
+
+    </head>
+    <body>
+
+        <div id="gpsymapa" data-role="page">
+
+            <div data-role="header" data-position="fixed">
+                <img src="../img/icon.png" class="ui-btn-right" />
+                <h1>Camara App</h1>
+                <a data-rel="back">Home</a>
+                <div data-role="footer" class="nav-glyphish-example" data-theme="a">
+                    <div data-role="navbar" class="nav-glyphish-example" data-grid="c">
+                        <ul>
+                            <li><a href="#" id="camara" data-role="button" data-icon="camera" >Camara</a></li>
+                            <li><a href="#" id="editable" data-role="button" data-icon="edit">Editable</a></li>
+                            <li><a href="#" id="liberia" data-icon="cloud">Libreria</a></li>
+                            <li><a href="#" id="album" data-icon="eye">Album</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- /header -->
+
+            <div role="main" class="ui-content">
+                <img style="display:none;width:300px;height:400px;" id="smallImage" src="" />
+                <img style="display:none;width:300px;height:400px;" id="largeImage" src="" />
+            </div><!-- /content -->
+
+            <div data-role="footer" data-position="fixed">
+                <h4>Openzix 2014</h4>
+            </div><!-- /footer -->
+        </div>
+
+        <script type="text/javascript" src="../cordova.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            var pictureSource;   // Origen de la imagen
+            var destinationType; // Formato del valor retornado
+
+            // Espera a que PhoneGap conecte con el dispositivo.
+            //
+
+            // PhoneGap esta listo para usarse!
+            //
+            function onDeviceReady() {
+                pictureSource = navigator.camera.PictureSourceType;
+                destinationType = navigator.camera.DestinationType;
+            }
+
+            // Llamada cuando la foto se retorna sin problemas
+            //
+            function onPhotoDataSuccess(imageData) {
+                // Descomenta esta linea para ver la imagen codificada en base64
+                // console.log(imageData);
+
+                // Obtiene el elemento HTML de la imagen
+                //
+                var smallImage = document.getElementById('smallImage');
+
+                // Revela el elemento de la imagen
+                //
+                smallImage.style.display = 'block';
+
+                // Muestra la foto capturada
+                // Se usan reglas CSS para dimensionar la imagen
+                //
+                smallImage.src = "data:image/jpeg;base64," + imageData;
+            }
+
+            // Llamada cuando la foto se retorna sin problemas
+            //
+            function onPhotoURISuccess(imageURI) {
+                // Descomenta esta linea para ver la ruta URI al fichero de imagen 
+                // console.log(imageURI);
+
+                // Obtiene el elemento HTML de la imagen
+                //
+                var largeImage = document.getElementById('largeImage');
+
+                // Revela el elemento de la imagen
+                //
+                largeImage.style.display = 'block';
+
+                // Muestra la foto capturada
+                // Se usan reglas CSS para dimensionar la imagen
+                //
+                largeImage.src = imageURI;
+            }
+
+            // Un botÃ³n llamara a esta funciÃ³n
+            //
+            function capturePhoto() {
+                // Toma la imagen y la retorna como una string codificada en base64
+                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 50,
+                    destinationType: destinationType.DATA_URL});
+            }
+
+            // Un botÃ³n llamara a esta funciÃ³n
+            //
+            function capturePhotoEdit() {
+                // Toma la imagen, permite editarla y la retorna como una string codificada en base64
+                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 20,
+                    allowEdit: true,
+                    destinationType: destinationType.DATA_URL});
+            }
+
+            // Un botÃ³n llamara a esta funciÃ³n
+            //
+            function getPhoto(source) {
+                // Retorna la ruta del fichero de imagen desde el origen especificado
+                navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
+                    destinationType: destinationType.FILE_URI,
+                    sourceType: source});
+            }
+
+            // Llamado cuando algo malo ocurre
+            // 
+            function onFail(message) {
+                alert('Ocurrio un error: ' + message);
+            }
+
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            $(window).load(function() {
+
+            });
+
+            $('#camara').click(function() {
+                capturePhoto();
+            });
+
+            $('#editable').click(function() {
+                capturePhotoEdit();
+            });
+
+
+            $('#liberia').click(function() {
+                getPhoto(pictureSource.PHOTOLIBRARY);
+            });
+
+            $('#liberia').click(function() {
+                getPhoto(pictureSource.SAVEDPHOTOALBUM);
+            });
+
+
+        </script>
+
+    </body>
+</html>
+
+<!--<html>
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,41 +173,42 @@ and open the template in the editor.
                 <img src="../img/icon.png" class="ui-btn-right" />
                 <h1>Camara</h1>
                 <a data-rel="back">Home</a>
-            </div><!-- /header -->
+            </div> /header 
             <div role="main" class="ui-content">
-                
+
                 <button id="tomarFoto">Capture Photo</button> <br>
-                <img id="myImage">
-                <!--button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+                <img id="miImagen">
+                button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
                 <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
                 <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
                 <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-                <img style="display:none;" id="largeImage" src="" /-->
-            </div><!-- /content -->
+                <img style="display:none;" id="largeImage" src="" /
+            </div> /content 
 
             <div data-role="footer" data-position="fixed">
                 <h4>Openzix 2014</h4>
-            </div><!-- /footer -->
+            </div> /footer 
         </div>
         <script type="text/javascript" src="../js/index.js"></script>
         <script>
+            
             alert('uno');
-            navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
-                destinationType: Camera.DestinationType.DATA_URL
-            });
-            alert('dos'); 
+            
+            navigator.camera.getPicture(onSuccess, onFail, {quality: 50});
+            alert('dos');
+            
             function onSuccess(imageData) {
-                alert('aqui');
-                var image = document.getElementById('myImage');
+                var image = document.getElementById('miImagen');
                 image.src = "data:image/jpeg;base64," + imageData;
             }
 
             function onFail(message) {
-                alert('Failed because: ' + message);
+                alert('OcurriÃ³ un error: ' + message);
             }
+    
             spps.camara();
         </script>
     </body>
 </html>
-
+-->
 
